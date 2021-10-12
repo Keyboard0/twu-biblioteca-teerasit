@@ -154,4 +154,17 @@ public class MenuTest {
         String movieToCheckout = "Black Widow";
         assertThat(mainMenu.checkoutMovie(movieToCheckout), is(true));
     }
+
+    @Test //2.3 User accounts: Login and View books checked out
+    public void shouldReturnTrueWhenUserAbleToLogin(){
+        Menu mainMenu = new Menu();
+        boolean expected = true;
+        String libraryNumber = "111-1234";
+        String password = "password111";
+        String name = "user1";
+        String email = "user1@gmail.com";
+        String phone = "0912345678";
+        User userToLogin = new User(libraryNumber, password, name, email, phone);
+        assertThat(mainMenu.checkUserLogin(userToLogin), is(expected));
+    }
 }

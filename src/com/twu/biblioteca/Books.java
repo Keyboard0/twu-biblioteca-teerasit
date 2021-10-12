@@ -23,7 +23,7 @@ public class Books {
 
     public boolean checkoutTheBook(String bookToCheckout) {
         for (Book book : bookShelf) {
-            if (bookToCheckout == book.getTitle() && !(book.isCheckedOut())) {
+            if (bookToCheckout.equals(book.getTitle()) && !(book.isCheckedOut())) {
                 book.setCheckedOut(true);
                 return true;
             }
@@ -33,7 +33,7 @@ public class Books {
 
     public boolean returnTheBook(String bookToReturn) {
         for (Book book : bookShelf) {
-            if (bookToReturn == book.getTitle() && (book.isCheckedOut())) {
+            if (bookToReturn.equals(book.getTitle()) && (book.isCheckedOut())) {
                 book.setCheckedOut(false);
                 return true;
             }
