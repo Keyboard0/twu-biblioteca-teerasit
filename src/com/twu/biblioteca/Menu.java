@@ -230,7 +230,7 @@ public class Menu {
                 break;
             case 9: // view checked out movie
                 if (isUserLoggingin()) {
-                    System.out.println(user.getCheckedoutMovie());
+                    System.out.println(user.getCheckoutsMovie());
                 }
                 break;
             case 10: // get user information

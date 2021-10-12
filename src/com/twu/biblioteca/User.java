@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class User {
     private final String libraryNumber;
     private final String password;
-    private final ArrayList<String> checkedoutBook;
-    private final ArrayList<String> checkedoutMovie;
+    private final ArrayList<String> checkoutsBook;
+    private final ArrayList<String> checkoutsMovie;
     private final String email;
     private final String phoneNumber;
     private final String name;
@@ -17,8 +17,8 @@ public class User {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.checkedoutBook = new ArrayList<>();
-        this.checkedoutMovie = new ArrayList<>();
+        this.checkoutsBook = new ArrayList<>();
+        this.checkoutsMovie = new ArrayList<>();
     }
 
     public String getLibraryNumber() {
@@ -31,15 +31,15 @@ public class User {
 
     public String getCheckoutsBook() {
         StringBuilder returnString = new StringBuilder();
-        for (String bookTitle : checkedoutBook) {
+        for (String bookTitle : checkoutsBook) {
             returnString.append(bookTitle).append("\n");
         }
         return returnString.toString();
     }
 
-    public String getCheckedoutMovie() {
+    public String getCheckoutsMovie() {
         StringBuilder returnString = new StringBuilder();
-        for (String mobieTitle : checkedoutMovie) {
+        for (String mobieTitle : checkoutsMovie) {
             returnString.append(mobieTitle).append("\n");
         }
         return returnString.toString();
@@ -50,18 +50,18 @@ public class User {
     }
 
     public void addBook(String bookTitle) {
-        this.checkedoutBook.add(bookTitle);
+        this.checkoutsBook.add(bookTitle);
     }
 
     public void removeBook(String bookTitle) {
-        this.checkedoutBook.remove(bookTitle);
+        this.checkoutsBook.remove(bookTitle);
     }
 
     public void addMovie(String movieTitle) {
-        this.checkedoutMovie.add(movieTitle);
+        this.checkoutsMovie.add(movieTitle);
     }
 
     public void removeMovie(String movieTitle) {
-        this.checkedoutMovie.remove(movieTitle);
+        this.checkoutsMovie.remove(movieTitle);
     }
 }
