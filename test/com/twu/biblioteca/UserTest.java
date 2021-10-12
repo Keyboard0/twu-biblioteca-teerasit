@@ -11,12 +11,13 @@ import static org.junit.Assert.*;
 public class UserTest {
 
     @Test // 2.3 view checked out book
-    public void shouldReturnListOfCheckedOutBook(){
+    public void shouldReturnListOfCheckedOutBook() {
         User testUser = new User("111-1234", "password111", "User1", "user1@gmail.com", "0912345678");
         String bookToCheckOut = "Title1";
         testUser.addBook(bookToCheckOut);
-        assertThat(testUser.getCheckedoutBook(), is(containsString(bookToCheckOut)));
+        assertThat(testUser.getCheckoutsBook(), is(containsString(bookToCheckOut)));
     }
+
     @Test // 2.3 view user information
     public void shouldReturnValidUserInformation() {
         User user1 = new User("111-1234", "password111", "User1", "user1@gmail.com", "0912345678");

@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -58,7 +59,7 @@ public class MenuTest {
         Menu mainMenu = new Menu();
         boolean expected = true;
         String bookToCheckout = "Title1";
-        assertThat(mainMenu.checkoutBook(bookToCheckout), is(true));
+        assertThat(mainMenu.checkoutBook(bookToCheckout), is(expected));
     }
 
     @Test //1.8 Success message on checkout of a book
@@ -147,16 +148,15 @@ public class MenuTest {
         )));
     }
 
-    @Test //2.2 Checout a movie
-    public void shouldReturnTrueWhenCheckoutMovie(){
+    @Test //2.2 Checkout a movie
+    public void shouldReturnTrueWhenCheckoutMovie() {
         Menu mainMenu = new Menu();
-        boolean expected = true;
         String movieToCheckout = "Black Widow";
         assertThat(mainMenu.checkoutMovie(movieToCheckout), is(true));
     }
 
     @Test //2.3 User accounts: Login and View books checked out
-    public void shouldReturnTrueWhenUserAbleToLogin(){
+    public void shouldReturnTrueWhenUserAbleToLogin() {
         Menu mainMenu = new Menu();
         boolean expected = true;
         String libraryNumber = "111-1234";

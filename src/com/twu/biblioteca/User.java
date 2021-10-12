@@ -3,15 +3,15 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class User {
-    private String libraryNumber;
-    private String password;
-    private ArrayList<String> checkedoutBook;
-    private ArrayList<String> checkedoutMovie;
-    private String email;
-    private String phoneNumber;
-    private String name;
+    private final String libraryNumber;
+    private final String password;
+    private final ArrayList<String> checkedoutBook;
+    private final ArrayList<String> checkedoutMovie;
+    private final String email;
+    private final String phoneNumber;
+    private final String name;
 
-    public User(String libraryNumber, String password, String name, String email, String phoneNumber){
+    public User(String libraryNumber, String password, String name, String email, String phoneNumber) {
         this.libraryNumber = libraryNumber;
         this.password = password;
         this.name = name;
@@ -29,36 +29,39 @@ public class User {
         return password;
     }
 
-    public String getCheckedoutBook() {
-        String returnString = "";
-        for(String bookTitle: checkedoutBook){
-            returnString += bookTitle + "\n";
+    public String getCheckoutsBook() {
+        StringBuilder returnString = new StringBuilder();
+        for (String bookTitle : checkedoutBook) {
+            returnString.append(bookTitle).append("\n");
         }
-        return returnString;
+        return returnString.toString();
     }
 
     public String getCheckedoutMovie() {
-        String returnString = "";
-        for(String mobieTitle: checkedoutMovie){
-            returnString += mobieTitle + "\n";
+        StringBuilder returnString = new StringBuilder();
+        for (String mobieTitle : checkedoutMovie) {
+            returnString.append(mobieTitle).append("\n");
         }
-        return returnString;
+        return returnString.toString();
     }
 
-    public String getInformation(){
+    public String getInformation() {
         return String.format("%-10s | %-20s | %-10s", this.name, this.email, this.phoneNumber);
     }
 
-    public void addBook(String bookTitle){
+    public void addBook(String bookTitle) {
         this.checkedoutBook.add(bookTitle);
     }
-    public void removeBook(String bookTitle){
+
+    public void removeBook(String bookTitle) {
         this.checkedoutBook.remove(bookTitle);
     }
-    public void addMovie(String movieTitle){
+
+    public void addMovie(String movieTitle) {
         this.checkedoutMovie.add(movieTitle);
     }
-    public void removeMovie(String movieTitle){
+
+    public void removeMovie(String movieTitle) {
         this.checkedoutMovie.remove(movieTitle);
     }
 }

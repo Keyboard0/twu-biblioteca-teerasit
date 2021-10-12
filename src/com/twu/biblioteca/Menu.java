@@ -3,48 +3,39 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class Menu {
-    private Books bookShelf;
-    private Movies movieShlef;
-    private Users userList;
+    private final Books bookShelf;
+    private final Movies movieShelf;
+    private final Users userList;
     private boolean userAlrLogin = false;
     private User user = null;
     Scanner sc = new Scanner(System.in);
 
     public Menu() {
         bookShelf = new Books();
-        movieShlef = new Movies();
+        movieShelf = new Movies();
         userList = new Users();
 
     }
 
     public String getMenuOption() {
-        String menuOption =
-                "Main menu:" + "\n" +
-                        "[1]: List of books" + "\n" +
-                        "[2]: Checkout a book" + "\n" +
-                        "[3]: Return a book" + "\n" +
-                        "[4]: List of movies" + "\n" +
-                        "[5]: Checkout a movie" + "\n" +
-                        "[6]: return a movie" + "\n" +
-                        "[7]: Login" + "\n" +
-                        "[8]: View checkedout book (Login required)" + "\n" +
-                        "[9]: view checkedout movie (Login required)" + "\n" +
-                        "[10]: View user information" + "\n" +
-                        "[11]: Logout" + "\n" +
-                        "[0]: Quit";
-        return menuOption;
+        return """
+                Main menu:
+                [1]: List of books
+                [2]: Checkout a book
+                [3]: Return a book
+                [4]: List of movies
+                [5]: Checkout a movie
+                [6]: return a movie
+                [7]: Login
+                [8]: View checkedout book (Login required)
+                [9]: view checkedout movie (Login required)
+                [10]: View user information (Login required)
+                [11]: Logout
+                [0]: Quit""";
     }
 
     public String getWelcome() {
         return "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
-    }
-
-    public String getBooksInShelf() {
-        String allBook = "";
-        for (Book book : bookShelf.getListBook()) {
-            allBook += book.getBookInfo() + "\n";
-        }
-        return allBook;
     }
 
     public String getInvalidMessage() {
@@ -99,6 +90,38 @@ public class Menu {
         }
     }
 
+    public boolean checkoutBook(String bookToCheckout) {
+        return bookShelf.checkoutTheBook(bookToCheckout);
+    }
+
+    public boolean returnBook(String bookToReturn) {
+        return bookShelf.returnTheBook(bookToReturn);
+    }
+
+    public boolean checkoutMovie(String movieToCheckout) {
+        return movieShelf.checkoutMovie(movieToCheckout);
+    }
+
+    public boolean returnMovie(String movieToReturn) {
+        return movieShelf.returnMovie(movieToReturn);
+    }
+
+    public String getBooksInShelf() {
+        StringBuilder allBook = new StringBuilder();
+        for (Book book : bookShelf.getListBook()) {
+            allBook.append(book.getBookInfo()).append("\n");
+        }
+        return allBook.toString();
+    }
+
+    public String getMovieShelf() {
+        StringBuilder allMovies = new StringBuilder();
+        for (Movie movie : movieShelf.getMovieShelf()) {
+            allMovies.append(movie.getMovieInfo()).append("\n");
+        }
+        return allMovies.toString();
+    }
+
     private boolean isUserLoggingin() {
         if (userAlrLogin) {
             return true;
@@ -106,6 +129,21 @@ public class Menu {
             System.out.println(getPleaseLoginFirstMessage());
             return false;
         }
+    }
+
+    public boolean checkUserLogin(User userToLogin) {
+        User getUserInSystem = userList.login(userToLogin);
+        if (getUserInSystem != null) {
+            user = getUserInSystem;
+            return true;
+        }
+        return false;
+    }
+
+    public User getUser() {
+        String libraryNumber = sc.nextLine();
+        String password = sc.nextLine();
+        return new User(libraryNumber, password, "", "", "");
     }
 
     public void start() {
@@ -116,46 +154,6 @@ public class Menu {
             userChoice = Integer.parseInt(sc.nextLine());
             userSelect(userChoice);
         } while (userChoice != 0);
-    }
-
-    public boolean checkoutBook(String bookToCheckout) {
-        boolean checkoutResult = bookShelf.checkoutTheBook(bookToCheckout);
-        return checkoutResult;
-    }
-
-    public boolean returnBook(String bookToReturn) {
-        boolean returnResult = bookShelf.returnTheBook(bookToReturn);
-        return returnResult;
-    }
-
-    public String getMovieShelf() {
-        String allMovies = "";
-        for (Movie movie : movieShlef.getMovieShelf()) {
-            allMovies += movie.getMovieInfo() + "\n";
-        }
-        return allMovies;
-    }
-
-    public boolean checkoutMovie(String movieToCheckout) {
-        boolean checkoutResult = movieShlef.checkoutMovie(movieToCheckout);
-        return checkoutResult;
-    }
-
-    public boolean checkUserLogin(User userToLogin) {
-        User getUserInSystem = userList.login(userToLogin);
-        boolean loginResult;
-        if (getUserInSystem!=null){
-            user=getUserInSystem;
-            return true;
-        }
-        return false;
-    }
-
-    public User getUser() {
-        String libraryNumber = sc.nextLine();
-        String password = sc.nextLine();
-        User userToLogin = new User(libraryNumber, password, "", "", "");
-        return userToLogin;
     }
 
     public void userSelect(int userChoice) {
@@ -217,7 +215,7 @@ public class Menu {
                     boolean userAbleToLogin = checkUserLogin(user);
                     if (userAbleToLogin) {
                         System.out.println("Welcome");
-                        userAlrLogin = userAbleToLogin;
+                        userAlrLogin = true;
                     } else {
                         System.out.println("Invalid library number or password!");
                     }
@@ -227,7 +225,7 @@ public class Menu {
                 break;
             case 8: // view checked out book
                 if (isUserLoggingin()) {
-                    System.out.println(user.getCheckedoutBook());
+                    System.out.println(user.getCheckoutsBook());
                 }
                 break;
             case 9: // view checked out movie
@@ -236,7 +234,7 @@ public class Menu {
                 }
                 break;
             case 10: // get user information
-                if (isUserLoggingin()){
+                if (isUserLoggingin()) {
                     System.out.println(user.getInformation());
                 }
                 break;
@@ -255,6 +253,4 @@ public class Menu {
                 break;
         }
     }
-
-
 }
