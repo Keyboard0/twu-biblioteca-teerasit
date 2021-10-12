@@ -54,7 +54,7 @@ public class MenuTest {
     }
 
     @Test //1.7 checkout a book
-    public void shouldReturnTrueWhenUserWantToCheckoutTheBook() {
+    public void shouldReturnTrueWhenCheckoutTheBook() {
         Menu mainMenu = new Menu();
         boolean expected = true;
         String bookToCheckout = "Title1";
@@ -106,5 +106,52 @@ public class MenuTest {
         boolean returnResult = false;
         String expected = "That is not a valid book to return.";
         assertThat(mainMenu.getReturnedBookMessage(returnResult), is(expected));
+    }
+
+    @Test //2.1 View a list of available movies
+    public void shouldReturnAllMovieDetailWhenNeeded() {
+        Menu mainMenu = new Menu();
+        String movie1Title = "Black Widow";
+        String movie2Title = "Godzilla vs. Kong";
+        String movie3Title = "Oxygen";
+        String movie4Title = "No Time to Die";
+        String movie1Year = "2021";
+        String movie2Year = "2021";
+        String movie3Year = "2021";
+        String movie4Year = "2021";
+        String movie1Director = "Cate Shortland";
+        String movie2Director = "Adam Wingard";
+        String movie3Director = "Alexandre Aja";
+        String movie4Director = "Cary Joji Fukunaga";
+        String movie1Rating = "7";
+        String movie2Rating = "6";
+        String movie3Rating = "7";
+        String movie4Rating = "Unrated";
+        assertThat(mainMenu.getMovieShelf(), is(allOf(
+                containsString(movie1Title),
+                containsString(movie2Title),
+                containsString(movie3Title),
+                containsString(movie4Title),
+                containsString(movie1Year),
+                containsString(movie2Year),
+                containsString(movie3Year),
+                containsString(movie4Year),
+                containsString(movie1Director),
+                containsString(movie2Director),
+                containsString(movie3Director),
+                containsString(movie4Director),
+                containsString(movie1Rating),
+                containsString(movie2Rating),
+                containsString(movie3Rating),
+                containsString(movie4Rating)
+        )));
+    }
+
+    @Test //2.2 Checout a movie
+    public void shouldReturnTrueWhenCheckoutMovie(){
+        Menu mainMenu = new Menu();
+        boolean expected = true;
+        String movieToCheckout = "Black Widow";
+        assertThat(mainMenu.checkoutMovie(movieToCheckout), is(true));
     }
 }

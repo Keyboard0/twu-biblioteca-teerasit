@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class Menu {
     private Books bookShelf;
+    private Movies movieShlef;
     Scanner sc = new Scanner(System.in);
 
     public Menu() {
         bookShelf = new Books();
+        movieShlef = new Movies();
     }
 
     public String getMenuOption() {
@@ -15,6 +17,9 @@ public class Menu {
                 "Main menu:" + "\n" +
                         "[1]: List of books" + "\n" +
                         "[2]: Check out a book" + "\n" +
+                        "[3]: Return a book" + "\n" +
+                        "[4]: List of movies" + "\n" +
+
                         "[0]: Quit";
         return menuOption;
     }
@@ -75,6 +80,19 @@ public class Menu {
         return returnResult;
     }
 
+    public String getMovieShelf() {
+        String allMovies = "";
+        for (Movie movie : movieShlef.getMovieShelf()) {
+            allMovies += movie.getMovieInfo() + "\n";
+        }
+        return allMovies;
+    }
+
+    public boolean checkoutMovie(String movieToCheckout){
+        boolean checkoutResult = movieShlef.checkoutMovie(movieToCheckout);
+        return checkoutResult;
+    }
+
     public void userSelect(int userChoice) {
         switch (userChoice) {
             case 1:
@@ -87,6 +105,13 @@ public class Menu {
             case 3:
                 String bookToReturn = sc.nextLine();
                 System.out.println(getReturnedBookMessage(returnBook(bookToReturn)));
+                break;
+            case 4:
+                System.out.println(getMovieShelf());
+                break;
+            case 5:
+                String movieToCheckout = sc.nextLine();
+                System.out.println(checkoutMovie(movieToCheckout));
                 break;
             case 0:
                 System.out.println(getExitMessage());
