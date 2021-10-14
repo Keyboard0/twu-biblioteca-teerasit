@@ -24,8 +24,8 @@ public class Movies {
 
     public boolean checkoutMovie(String movieToCheckout) {
         for (Movie movie : movieShelf) {
-            if (movieToCheckout.equals(movie.getTitle()) && !(movie.isCheckedOut())) {
-                movie.setCheckedOut(true);
+            if (movieToCheckout.equals(movie.getTitle()) && !(movie.isCheckout())) {
+                movie.setCheckout(true);
                 return true;
             }
         }
@@ -34,8 +34,8 @@ public class Movies {
 
     public boolean returnMovie(String movieToReturn) {
         for (Movie movie : movieShelf) {
-            if (movieToReturn.equals(movie.getTitle()) && (movie.isCheckedOut())) {
-                movie.setCheckedOut(false);
+            if (movieToReturn.equals(movie.getTitle()) && (movie.isCheckout())) {
+                movie.setCheckout(false);
                 return true;
             }
         }

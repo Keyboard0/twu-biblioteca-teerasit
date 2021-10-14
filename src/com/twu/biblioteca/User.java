@@ -29,13 +29,7 @@ public class User {
         return password;
     }
 
-    public String getCheckoutsBook() {
-        StringBuilder returnString = new StringBuilder();
-        for (String bookTitle : checkoutsBook) {
-            returnString.append(bookTitle).append("\n");
-        }
-        return returnString.toString();
-    }
+
 
     public String getCheckoutsMovie() {
         StringBuilder returnString = new StringBuilder();
@@ -63,5 +57,13 @@ public class User {
 
     public void removeMovie(String movieTitle) {
         this.checkoutsMovie.remove(movieTitle);
+    }
+
+    public String getCheckoutsBook() {
+        StringBuilder returnString = new StringBuilder();
+        for (String bookTitle : checkoutsBook) {
+            returnString.append(bookTitle).append("\n");
+        }
+        return returnString.toString();
     }
 }
