@@ -29,16 +29,6 @@ public class User {
         return password;
     }
 
-
-
-    public String getCheckoutsMovie() {
-        StringBuilder returnString = new StringBuilder();
-        for (String mobieTitle : checkoutsMovie) {
-            returnString.append(mobieTitle).append("\n");
-        }
-        return returnString.toString();
-    }
-
     public String getInformation() {
         return String.format("%-10s | %-20s | %-10s", this.name, this.email, this.phoneNumber);
     }
@@ -63,6 +53,14 @@ public class User {
         StringBuilder returnString = new StringBuilder();
         for (String bookTitle : checkoutsBook) {
             returnString.append(bookTitle).append("\n");
+        }
+        return returnString.toString();
+    }
+
+    public String getCheckoutsMovie() {
+        StringBuilder returnString = new StringBuilder();
+        for (String movieTitle : checkoutsMovie) {
+            returnString.append(movieTitle).append("\n");
         }
         return returnString.toString();
     }

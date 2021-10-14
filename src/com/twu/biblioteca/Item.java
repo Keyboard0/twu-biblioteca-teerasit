@@ -23,7 +23,4 @@ public class Item {
     public void setCheckout(boolean checkout) {
         this.isCheckout = checkout;
     }
-    public String getParent(){
-        return this.getClass().getName();
-    }
 }
