@@ -94,12 +94,12 @@ public class Menu {
         return bookShelf.checkoutTheBook(bookToCheckout);
     }
 
-    public boolean returnBook(String bookToReturn) {
-        return bookShelf.returnTheBook(bookToReturn);
-    }
-
     public boolean checkoutMovie(String movieToCheckout) {
         return movieShelf.checkoutMovie(movieToCheckout);
+    }
+
+    public boolean returnBook(String bookToReturn) {
+        return bookShelf.returnTheBook(bookToReturn);
     }
 
     public boolean returnMovie(String movieToReturn) {
